@@ -91,9 +91,16 @@ function requestFrame (fn, giveup) {
   }
 }
 
-var swiper = {
-  name: 'v-swiper',
+// var d1 = Date.now()
+//
+// function logd (s) {
+//   var d2 = Date.now()
+//   console.log(s, d2 - d1)
+//   d1 = d2
+// }
 
+var swiper = {render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"swiper",class:{expose: _vm._expose}},[(_vm.thumbnails && _vm.thumbnails.length > 0)?_c('div',{staticClass:"thumbnail"},_vm._l((_vm.thumbnails),function(src){return _c('img',{attrs:{"src":src}})})):_vm._e(),_vm._v(" "),_c('div',{ref:"items",staticClass:"swiper-items"},[_vm._t("default")],2),_vm._v(" "),(_vm._indicator)?_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.slides && _vm.slides.length > 1),expression:"slides && slides.length > 1"}],staticClass:"swiper-indicators"},[_c('span',[_vm._v(_vm._s(_vm.index + 1))]),_vm._v("/"),_c('span',[_vm._v(_vm._s(_vm.slides.length))])]):_vm._e()])},staticRenderFns: [],
+  name: 'swiper',
   props: {
     thumbnails: Array,
     indicator: {
@@ -120,13 +127,6 @@ var swiper = {
       type: String
     }
   },
-
-  // provide() {
-  //   return {
-  //     finalForm: this.finalForm
-  //   }
-  // },
-
   data: function data () {
     return {
       disable: false,
@@ -143,7 +143,6 @@ var swiper = {
       box: null
     }
   },
-
   computed: {
     // ticking () { return this.status & 1 },
     _indicator: function _indicator () { return !isUndefined(this.indicator) },
@@ -176,7 +175,6 @@ var swiper = {
     first: function first () { return this.len > 0 ? this.slides[0] : null },
     last: function last () { return this.len > 0 ? this.slides[this.len - 1] : null }
   },
-
   methods: {
     // isUndefined (val) { return isUndefined(val) },
     moveAllExceptCurrent: function moveAllExceptCurrent () {
@@ -489,18 +487,18 @@ var swiper = {
 
     // todo: support window resize
     // on(window, 'resize', () => this.init())
-  },
-
-  render: function (h) {
-    return (
-      h( 'div', null, "Hello" )
-    )
   }
+}
+
+var swiperItem = {render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"swiper-item mode1"},[_vm._t("default")],2)},staticRenderFns: [],
+  name: 'swiper-item',
+  props: ['width', 'height', 'thumbnail']
 }
 
 var index = {
   install: function install (vue, options) {
     vue.component('vswiper', swiper);
+    vue.component('vswiper-item', swiperItem);
   }
 }
 

@@ -9,10 +9,14 @@
     "jest": "^22.4.3",
     "rollup": "^0.57.1",
     "rollup-plugin-buble": "^0.19.2",
+    "rollup-plugin-commonjs": "^9.1.0",
     "rollup-plugin-json": "^2.3.0",
+    "rollup-plugin-node-resolve": "^3.3.0",
+    "rollup-plugin-vue": "^3.0.0",
     "standard-version": "^4.3.0",
     "uglify-js": "^3.3.17",
-    "vue": "^2.5.16"
+    "vue": "^2.5.16",
+    "vue-template-compiler": "^2.5.16"
   },
   "name": "vue-vswiper",
   "description": "",

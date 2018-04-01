@@ -1,8 +1,39 @@
+<template lang="html">
+  <div class="swiper" :class="{expose: _expose}">
+    <div class="thumbnail" v-if="thumbnails && thumbnails.length > 0">
+      <img :src="src" v-for="src in thumbnails">
+    </div>
+    <div class="swiper-items" ref="items">
+      <slot></slot>
+    </div>
+    <div class="swiper-indicators" v-if="_indicator" v-show="slides && slides.length > 1">
+      <span>{{index + 1}}</span>/<span>{{slides.length}}</span>
+    </div>
+  </div>
+</template>
+
+<script>
+// thumbnails: tell swiper all imgs' small version
+// thumbnail: tell swiper img size
+//
+// <swiper :thumbnails="thumbnails">
+//   <swiper-item v-for="(img, index) in imgs" :key="index" :thumbnail="thumbnails[index]">
+//     <zimg :src="img"></zimg>
+//   </swiper-item>
+// </swiper>
+
 import { addClass, removeClass, on, once, requestFrame, isUndefined } from './utils'
 
-export default {
-  name: 'v-swiper',
+// var d1 = Date.now()
+//
+// function logd (s) {
+//   var d2 = Date.now()
+//   console.log(s, d2 - d1)
+//   d1 = d2
+// }
 
+export default {
+  name: 'swiper',
   props: {
     thumbnails: Array,
     indicator: {
@@ -29,13 +60,6 @@ export default {
       type: String
     }
   },
-
-  // provide() {
-  //   return {
-  //     finalForm: this.finalForm
-  //   }
-  // },
-
   data () {
     return {
       disable: false,
@@ -52,7 +76,6 @@ export default {
       box: null
     }
   },
-
   computed: {
     // ticking () { return this.status & 1 },
     _indicator () { return !isUndefined(this.indicator) },
@@ -85,7 +108,6 @@ export default {
     first () { return this.len > 0 ? this.slides[0] : null },
     last () { return this.len > 0 ? this.slides[this.len - 1] : null }
   },
-
   methods: {
     // isUndefined (val) { return isUndefined(val) },
     moveAllExceptCurrent () {
@@ -390,13 +412,63 @@ export default {
 
     // todo: support window resize
     // on(window, 'resize', () => this.init())
-  },
-
-  render: function (h) {
-    return (
-      <div class="aaa">
-        <slot></slot>
-      </div>
-    )
   }
 }
+</script>
+
+<style lang="less">
+.swiper.expose {
+  overflow: visible;
+}
+.swiper {
+  position: relative;
+  overflow: hidden;
+  .swiper-items {
+    height: 7.5rem;
+    // todo: here is a bug, should add hidden back
+    // overflow: hidden;
+    position: relative;
+  }
+  .swiper-item {
+    overflow: hidden;
+    // background: #000;
+    position: absolute;
+    width: 100%; height: 100%;
+    transform: translateX(-1000%);
+    img {
+      width: auto;
+      display: block;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  .swiper-item.active {
+    transform: none;
+  }
+  .swiper-item.mode1 img {
+    width: 100%;
+  }
+  .swiper-item.mode2 img {
+    height: 100%;
+  }
+  .swiper-indicators {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: #fff;
+    font-size: .4rem;
+    span:first-child {
+      font-size: .6rem;
+    }
+    transform: translate3d(0, 0, 0);
+  }
+  .thumbnail {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    height: 1px;
+  }
+}
+</style>
