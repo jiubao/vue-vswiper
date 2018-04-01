@@ -1,0 +1,28 @@
+{
+  "devDependencies": {
+    "jest": "^22.4.3",
+    "rollup": "^0.57.1",
+    "rollup-plugin-buble": "^0.19.2",
+    "rollup-plugin-json": "^2.3.0",
+    "standard-version": "^4.3.0",
+    "vue": "^2.5.16"
+  },
+  "dependencies": {},
+  "name": "vue-vswiper",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jiubao/vue-vswiper.git"
+  },
+  "author": "jiubao <xia.ldj@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jiubao/vue-vswiper/issues"
+  },
+  "homepage": "https://github.com/jiubao/vue-vswiper#readme"
+}
