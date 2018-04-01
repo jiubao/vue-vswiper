@@ -17,6 +17,9 @@ export default {
   }],
   plugins: [
     json(),
-    buble()
+    buble({
+      objectAssign: 'Object.assign',
+      jsx: 'h'
+    })
   ]
 }

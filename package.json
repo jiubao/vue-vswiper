@@ -1,19 +1,32 @@
 {
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-helper-vue-jsx-merge-props": "^2.0.3",
+    "babel-jest": "^22.4.3",
+    "babel-plugin-syntax-jsx": "^6.18.0",
+    "babel-plugin-transform-vue-jsx": "^3.7.0",
+    "babel-preset-env": "^1.6.1",
     "jest": "^22.4.3",
     "rollup": "^0.57.1",
     "rollup-plugin-buble": "^0.19.2",
     "rollup-plugin-json": "^2.3.0",
     "standard-version": "^4.3.0",
+    "uglify-js": "^3.3.17",
     "vue": "^2.5.16"
   },
-  "dependencies": {},
   "name": "vue-vswiper",
   "description": "",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/vue-vswiper.es.js",
+  "browser": "dist/vue-vswiper.umd.js",
+  "module": "dist/vue-vswiper.es.js",
+  "cjs": "dist/vue-vswiper.cjs.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "dev": "rollup -c -w",
+    "build": "rm -rf dist && rollup -c && npm run minify",
+    "minify": "uglifyjs $npm_package_browser -cm -o $npm_package_browser",
+    "release": "npm run build && npm run minify && standard-version && git push --follow-tags && npm publish --access=public"
   },
   "repository": {
     "type": "git",
