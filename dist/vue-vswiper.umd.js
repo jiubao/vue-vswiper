@@ -307,7 +307,8 @@
 
       _animateX: function _animateX (el, offset) {
         this.animate(2, el, function () {
-          el.style.webkitTransition = '-webkit-transform 100ms ease-in-out';
+          // el.style.webkitTransition = '-webkit-transform 100ms ease-in-out'
+          el.style.webkitTransition = '-webkit-transform 500ms cubic-bezier(0.22, 0.61, 0.36, 1)';
         }, function () {
           el.style.webkitTransform = "translate3d(" + offset + "px, 0, 0)";
         });
@@ -346,7 +347,7 @@
           fn && fn();
         };
         once(element, 'webkitTransitionEnd', callback);
-        setTimeout(callback, 120);
+        setTimeout(callback, 520);
       },
 
       onTouchStart: function onTouchStart (event) {
